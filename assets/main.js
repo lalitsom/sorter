@@ -1,5 +1,8 @@
 names_inp = document.getElementById('names_inp');
 
+// customSort = quickSort;
+customSort = mergeSort;
+
 items=[];
 document.addEventListener('DOMContentLoaded', function() {
     var elem = document.querySelectorAll('.modal');
@@ -23,10 +26,11 @@ function start(reset = 0){
     dc={}
     count=0;
   }
-  var sortedArray = quickSort(items, 0, items.length - 1);
+  var sortedArray = customSort(items, 0, items.length - 1);
+
   if(sortedArray.length>0){
     document.getElementById('results').innerHTML += "<br> Total comparisons " + count +
-    "<br> Result: " + items + "<br>";
+    "<br> Result: " + sortedArray + "<br>";
 
     close_modal();
   }
@@ -41,65 +45,6 @@ function close_modal(){
 destroy = 0;
 emp=[];
 
-function swap(items, leftIndex, rightIndex){
-    var temp = items[leftIndex];
-    items[leftIndex] = items[rightIndex];
-    items[rightIndex] = temp;
-}
-function partition(items, left, right) {
-    var pivot   = items[Math.floor((right + left) / 2)], //middle element
-        i       = left, //left pointer
-        j       = right; //right pointer
-    while (i <= j) {
-      if(destroy) return emp;
-        while ( cmp(items[i], pivot)) {
-          if(destroy) return emp;
-            i++;
-        }
-        if(destroy) return emp;
-        while ( (  items[j]!=pivot && !cmp(items[j],pivot))   ) {
-          if(destroy) return emp;
-            j--;
-        }
-        if(destroy) return emp;
-        if (i <= j) {
-            swap(items, i, j); //sawpping two elements
-            i++;
-            j--;
-        }
-    }
-    if(destroy) return emp;
-    return i;
-}
-
-
-
-
-
-function quickSort(items, left, right) {
-  console.log(items,left,right);
-    var index;
-    if(destroy) return emp;
-    if (items.length > 1) {
-      if(destroy) return emp;
-        index = partition(items, left, right); //index returned from partition
-        if(destroy) return emp;
-        if (left < index - 1) { //more elements on the left side of the pivot
-          if(destroy) return emp;
-            quickSort(items, left, index - 1);
-            if(destroy) return emp;
-        }
-        if(destroy) return emp;
-        if (index < right) { //more elements on the right side of the pivot
-          if(destroy) return emp;
-            quickSort(items, index, right);
-            if(destroy) return emp;
-        }
-    }
-    if(destroy) return emp;
-    return items;
-}
-// first call to quick sort
 
 function chose(sel){
   a = document.getElementById('red_inp').innerHTML;
